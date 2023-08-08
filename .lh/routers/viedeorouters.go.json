@@ -1,0 +1,18 @@
+{
+    "sourceFile": "routers/viedeorouters.go",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1691485735579,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1691485735579,
+            "name": "Commit-0",
+            "content": "package routers\r\n\r\nimport (\r\n\t\"github.com/Coreychen4444/Douyin/handler\"\r\n\t\"github.com/Coreychen4444/Douyin/repository\"\r\n\t\"github.com/Coreychen4444/Douyin/service\"\r\n\t\"github.com/gin-gonic/gin\"\r\n\t\"gorm.io/gorm\"\r\n)\r\n\r\n// InitRouter 初始化路由信息\r\nfunc InitRouter(db *gorm.DB) *gin.Engine {\r\n\trouter := gin.Default()\r\n\trepo := repository.NewDbRepository(db)\r\n\tuserService := service.NewUserService(repo)\r\n\tvideoService := service.NewVideoService(repo)\r\n\r\n\tuserHandler := handler.NewUserHandler(userService)\r\n\tvideoHandler := handler.NewVideoHandler(videoService)\r\n\r\n\tuserGroup := router.Group(\"/douyin/user\")\r\n\t{\r\n\t\tuserGroup.POST(\"/register\", userHandler.Register)\r\n\t\tuserGroup.POST(\"/login\", userHandler.Login)\r\n\t\tuserGroup.GET(\"/\", userHandler.GetUserInfo)\r\n\t}\r\n\r\n\tvideoGroup := router.Group(\"/douyin/video\")\r\n\t{\r\n\t\tvideoGroup.POST(\"/publish\", videoHandler.PublishVideo)\r\n\t}\r\n\r\n\treturn router\r\n}\r\n"
+        }
+    ]
+}

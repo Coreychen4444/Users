@@ -1,5 +1,7 @@
 package model
 
+import "time"
+
 // User
 type User struct {
 	Avatar          string `json:"avatar"`           // 用户头像
@@ -14,5 +16,12 @@ type User struct {
 	TotalFavorited  string `json:"total_favorited"`  // 获赞数量
 	WorkCount       int64  `json:"work_count"`       // 作品数
 	Username        string `json:"-" gorm:"unique"`  // 注册用户名，最长32个字符
-	PasswordHash    string `json:"-"`                // 密码，最长32个字符   service层完成对应的逻辑操作
+	PasswordHash    string `json:"-" gorm:"size:100"`                // 密码，最长32个字符   service层完成对应的逻辑操作
+}
+type Video struct {
+	ID            uint      `gorm:"primaryKey" json:"id"` // 视频ID
+	AuthorID      int64     `json:"author_id"` // 作者ID
+	Title         string    `json:"title"` // 视频标题
+	VideoFilePath string    `json:"video_file_path"` // 视频文件路径
+	CreateTime    time.Time `json:"create_time"` // 创建时间
 }

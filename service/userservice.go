@@ -33,7 +33,7 @@ func (s *UserService) Register(username, password string) (*model.User, string, 
 		return nil, "", errors.New("用户名或密码长度不能超过32位,请重新输入")
 	}
 	user, err := s.r.GetUserByName(username)
-	if err != nil {
+	if err != nil &&err!=gorm.ErrRecordNotFound{
 		return nil, "", err
 	}
 	//判断用户名是否存在
@@ -150,4 +150,15 @@ func VerifyToken(tknStr string) (*Claims, error) {
 	}
 
 	return claims, nil
+}
+func (s *UserService) Init() error {
+    // 初始化一个固定的用户作为演示用
+    username := "demo"
+    password := "password123"
+    user, _, err := s.Register(username, password)
+    if err != nil {
+        return err
+    }
+    fmt.Printf("Demo user registered with ID: %d\n", user.ID)
+    return nil
 }
