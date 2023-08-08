@@ -151,14 +151,3 @@ func VerifyToken(tknStr string) (*Claims, error) {
 
 	return claims, nil
 }
-func (s *UserService) Init() error {
-    // 初始化一个固定的用户作为演示用
-    username := "demo"
-    password := "password123"
-    user, _, err := s.Register(username, password)
-    if err != nil {
-        return err
-    }
-    fmt.Printf("Demo user registered with ID: %d\n", user.ID)
-    return nil
-}
