@@ -33,7 +33,7 @@ func (s *UserService) Register(username, password string) (*model.User, string, 
 		return nil, "", errors.New("用户名或密码长度不能超过32位,请重新输入")
 	}
 	user, err := s.r.GetUserByName(username)
-	if err != nil &&err!=gorm.ErrRecordNotFound{
+	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, "", err
 	}
 	//判断用户名是否存在
