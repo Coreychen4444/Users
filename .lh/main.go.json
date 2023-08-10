@@ -1,0 +1,22 @@
+{
+    "sourceFile": "main.go",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1691504736164,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1691504742729,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,16 +10,15 @@\n )\r\n \r\n func main() {\r\n \t// 连接数据库(用户名和密码自己改)\r\n-\tdsn := \"root:123456@tcp(:3306)/itcast?charset=utf8mb4&parseTime=True&loc=Local\"\r\n+\tdsn := \"root:44447777@tcp(:3306)/users?charset=utf8mb4&parseTime=True&loc=Local\"\r\n \tdb, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})\r\n \tif err != nil {\r\n \t\tlog.Fatal(\"failed to connect database\")\r\n \t}\r\n \t// 自动迁移\r\n \tdb.AutoMigrate(&model.User{})\r\n-\tdb.AutoMigrate(&model.Video{})\r\n \t// 注册路由\r\n \tr := routers.InitRouter(db)\r\n \tr.Run(\":8080\")\r\n }\r\n"
+                }
+            ],
+            "date": 1691504736164,
+            "name": "Commit-0",
+            "content": "package main\r\n\r\nimport (\r\n\t\"log\"\r\n\r\n\t\"github.com/Coreychen4444/Users/model\"\r\n\t\"github.com/Coreychen4444/Users/routers\"\r\n\t\"gorm.io/driver/mysql\"\r\n\t\"gorm.io/gorm\"\r\n)\r\n\r\nfunc main() {\r\n\t// 连接数据库(用户名和密码自己改)\r\n\tdsn := \"root:123456@tcp(:3306)/itcast?charset=utf8mb4&parseTime=True&loc=Local\"\r\n\tdb, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})\r\n\tif err != nil {\r\n\t\tlog.Fatal(\"failed to connect database\")\r\n\t}\r\n\t// 自动迁移\r\n\tdb.AutoMigrate(&model.User{})\r\n\tdb.AutoMigrate(&model.Video{})\r\n\t// 注册路由\r\n\tr := routers.InitRouter(db)\r\n\tr.Run(\":8080\")\r\n}\r\n"
+        }
+    ]
+}

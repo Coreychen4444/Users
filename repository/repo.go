@@ -1,6 +1,8 @@
 package repository
 
 import (
+	"fmt"
+
 	"github.com/Coreychen4444/Users/model"
 	"gorm.io/gorm"
 )
@@ -46,4 +48,23 @@ func (r *DbRepository) GetUserById(id int64) (*model.User, error) {
 		return nil, err
 	}
 	return &user, nil
+}
+
+// 根据文件扩展名创建视频记录
+
+func (r *DbRepository) CreateVideo(video *model.Video) error {
+	result := r.db.Create(video)
+	if result.Error != nil {
+		return result.Error
+	}
+	return nil
+}
+// repository 包中的 GetPublishedVideos 函数，获取已发布的视频
+func (r *DbRepository) GetPublishedVideos() ([]*model.Video, error) {
+	var videos []*model.Video
+	err := r.db.Find(&videos).Error
+	if err != nil {
+		return nil, fmt.Errorf("获取视频失败: %w", err)
+	}
+	return videos, nil
 }
